@@ -3,7 +3,6 @@ $(document).ready(function() {
     const resultsList = $('#resultsList');
     const birdInfo = $('#birdInfo');
     const copyButton = $('#copyButton');
-    const alertText = $('#alertText');
 
     let birds = [];
     let template = '';
@@ -86,9 +85,9 @@ $(document).ready(function() {
         const textToCopy = birdInfo.text();
         navigator.clipboard.writeText(textToCopy)
             .then(() => {
-                alertText.text('Texto copiado para a área de transferência').show(); // Mostra o texto de alerta
+                copyButton.text('Texto copiado').prop('disabled', true).addClass('copied'); // Altera o texto, desativa o botão e adiciona a classe
                 setTimeout(() => {
-                    alertText.hide(); // Oculta o texto de alerta após 3 segundos
+                    copyButton.text('Copiar').prop('disabled', false).removeClass('copied'); // Restaura o texto, ativa o botão e remove a classe após 3 segundos
                 }, 3000);
             })
             .catch(err => {
