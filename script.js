@@ -8,9 +8,9 @@ $(document).ready(function() {
     let template = '';
     let hashtags = '';
 
-    // Função para remover acentos
-    function removeAccents(str) {
-        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    // Função para remover acentos e normalizar texto
+    function normalizeText(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\s-]/g, '');
     }
 
     // Função para carregar e processar o CSV
@@ -37,15 +37,19 @@ $(document).ready(function() {
 
     // Função para gerar as hashtags formatadas
     function generateHashtags(bird) {
-        const popularHashtag = removeAccents(bird.nome_popular).toLowerCase().replace(/\s/g, '').replace(/-/g, '');
-        const cientificHashtag = removeAccents(bird.nome_cientifico).toLowerCase().replace(/\s/g, '').replace(/-/g, '');
-        const inglesHashtag = removeAccents(bird.nome_ingles).toLowerCase().replace(/\s/g, '').replace(/-/g, '');
+        const popularHashtag = normalizeText(bird.nome_popular).toLowerCase();
+        const cientificHashtag = normalizeText(bird.nome_cientifico).toLowerCase();
+        const inglesHashtag = normalizeText(bird.nome_ingles).toLowerCase();
         hashtags = `#${popularHashtag} #${cientificHashtag} #${inglesHashtag}`;
     }
 
     // Função para filtrar os resultados com base na entrada do usuário
     function filterResults(query) {
-        return birds.filter(bird => bird.nome_popular.toLowerCase().includes(query.toLowerCase()));
+        const normalizedQuery = normalizeText(query.toLowerCase());
+        return birds.filter(bird => 
+            normalizeText(bird.nome_popular.toLowerCase()).includes(normalizedQuery) ||
+            normalizeText(bird.nome_cientifico.toLowerCase()).includes(normalizedQuery)
+        );
     }
 
     // Função para mostrar os resultados filtrados
