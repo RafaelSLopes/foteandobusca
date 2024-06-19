@@ -86,6 +86,14 @@ $(document).ready(function() {
         displayResults(results);
     });
 
+    // Event listener para o campo de pesquisa ao pressionar Enter
+    searchInput.on('keypress', function(event) {
+        if (event.which === 13) { // 13 é o código da tecla Enter
+            event.preventDefault();
+            $(this).blur(); // Tira o foco do campo de entrada
+        }
+    });
+
     // Event listener para o botão de cópia
     copyButton.on('click', function() {
         const textToCopy = birdInfo.text();
