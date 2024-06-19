@@ -8,14 +8,11 @@ $(document).ready(function() {
     let template = '';
     let hashtags = '';
 
-    // Função para remover acentos, espaços, hífens e normalizar texto
-    function normalizeText(str) {
-        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\s-]/g, '');
-    }
-
-    // Função para manter apenas letras
+    // Função para remover acentos e manter apenas letras
     function keepOnlyLetters(str) {
-        return str.replace(/[^a-zA-Z]/g, '');
+        return str.normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')
+                  .replace(/[^a-zA-Z]/g, ''); // Remove caracteres que não são letras
     }
 
     // Função para carregar e processar o CSV
@@ -42,18 +39,18 @@ $(document).ready(function() {
 
     // Função para gerar as hashtags formatadas
     function generateHashtags(bird) {
-        const popularHashtag = keepOnlyLetters(normalizeText(bird.nome_popular).toLowerCase());
-        const cientificHashtag = keepOnlyLetters(normalizeText(bird.nome_cientifico).toLowerCase());
-        const inglesHashtag = keepOnlyLetters(normalizeText(bird.nome_ingles).toLowerCase());
+        const popularHashtag = keepOnlyLetters(bird.nome_popular).toLowerCase();
+        const cientificHashtag = keepOnlyLetters(bird.nome_cientifico).toLowerCase();
+        const inglesHashtag = keepOnlyLetters(bird.nome_ingles).toLowerCase();
         hashtags = `#${popularHashtag} #${cientificHashtag} #${inglesHashtag}`;
     }
 
     // Função para filtrar os resultados com base na entrada do usuário
     function filterResults(query) {
-        const normalizedQuery = normalizeText(query.toLowerCase());
+        const normalizedQuery = keepOnlyLetters(query.toLowerCase());
         return birds.filter(bird => 
-            normalizeText(bird.nome_popular.toLowerCase()).includes(normalizedQuery) ||
-            normalizeText(bird.nome_cientifico.toLowerCase()).includes(normalizedQuery)
+            keepOnlyLetters(bird.nome_popular.toLowerCase()).includes(normalizedQuery) ||
+            keepOnlyLetters(bird.nome_cientifico.toLowerCase()).includes(normalizedQuery)
         );
     }
 
