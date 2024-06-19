@@ -8,9 +8,14 @@ $(document).ready(function() {
     let template = '';
     let hashtags = '';
 
-    // Função para remover acentos e normalizar texto
+    // Função para remover acentos, espaços, hífens e normalizar texto
     function normalizeText(str) {
         return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\s-]/g, '');
+    }
+
+    // Função para manter apenas letras
+    function keepOnlyLetters(str) {
+        return str.replace(/[^a-zA-Z]/g, '');
     }
 
     // Função para carregar e processar o CSV
@@ -37,9 +42,9 @@ $(document).ready(function() {
 
     // Função para gerar as hashtags formatadas
     function generateHashtags(bird) {
-        const popularHashtag = normalizeText(bird.nome_popular).toLowerCase();
-        const cientificHashtag = normalizeText(bird.nome_cientifico).toLowerCase();
-        const inglesHashtag = normalizeText(bird.nome_ingles).toLowerCase();
+        const popularHashtag = keepOnlyLetters(normalizeText(bird.nome_popular).toLowerCase());
+        const cientificHashtag = keepOnlyLetters(normalizeText(bird.nome_cientifico).toLowerCase());
+        const inglesHashtag = keepOnlyLetters(normalizeText(bird.nome_ingles).toLowerCase());
         hashtags = `#${popularHashtag} #${cientificHashtag} #${inglesHashtag}`;
     }
 
