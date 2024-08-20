@@ -3,8 +3,10 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+    display: flex;
+    justify-content: flex-start; /* Alinha o conteúdo no início horizontalmente */
+    align-items: flex-start; /* Alinha o conteúdo no início verticalmente */
     height: 100vh;
-    overflow-x: hidden; /* Impede rolagem horizontal */
 }
 
 .container {
@@ -13,22 +15,14 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 600px;
-    margin: 20px auto; /* Centraliza horizontalmente */
-    max-width: 90%; /* Responsivo para telas menores */
-}
-
-h1 {
-    margin-bottom: 20px;
 }
 
 #searchInput {
     width: 80%;
     padding: 10px;
-    margin: 0 auto 20px auto;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    display: block;
 }
 
 #resultsList {
@@ -37,7 +31,6 @@ h1 {
     max-height: 150px;
     overflow-y: auto;
     margin-bottom: 20px;
-    width: 100%;
 }
 
 #resultsList li {
@@ -50,31 +43,39 @@ h1 {
     background-color: #f0f0f0;
 }
 
+.container {
+    text-align: center; /* Centraliza o texto dentro do bloco */
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    margin: 10px;
+}
+
 #birdInfo {
-    font-size: 14px;
+    font-size: 14px; /* Tamanho de fonte menor para dispositivos móveis */
     color: #333;
+    text-align: left;
 }
 
 #copyButton {
     display: block;
-    margin: 10px auto 0 auto;
+    margin: 10px auto; /* Centraliza o botão */
     background-color: #4CAF50;
     color: white;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s; /* Transição suave para as mudanças de estado */
+}
+
+#copyButton:active {
+    background-color: #388E3C; /* Cor levemente mais escura quando clicado */
 }
 
 #copyButton.copied {
-    opacity: 0.7;
+    opacity: 0.6; /* Levemente opaco quando mostra a mensagem "Texto copiado" */
+    cursor: not-allowed;
 }
-
-#alertText {
-    color: #007bff;
-    font-size: 0.9em;
-    display: none;
-}
-
-#birdInfo{
-    text-align: left;
