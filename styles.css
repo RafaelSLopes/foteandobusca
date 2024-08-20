@@ -1,11 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
     background-color: #f0f0f0;
+    display: flex;
+    justify-content: flex-start; /* Alinha o conteúdo no início horizontalmente */
+    align-items: flex-start; /* Alinha o conteúdo no início verticalmente */
+    height: 100vh;
 }
 
 .container {
@@ -48,10 +49,17 @@ body {
 }
 
 .container {
-    text-align: left;
-    max-width: 600px;
-    margin: 0 auto;
+    text-align: center; /* Centraliza o texto dentro do bloco */
+    background: #fff;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    margin: 20px;
+}
+
+#birdInfo{
+    text-align: left;
 }
 
 #copyButton {
