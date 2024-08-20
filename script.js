@@ -7,11 +7,6 @@ $(document).ready(function() {
     let birds = [];
     let template = '';
     let hashtags = '';
-
-    // Função para manter a página no topo ao focar na caixa de pesquisa
-     $('#searchInput').on('focus', function() {
-        window.scrollTo(0, 0); // Força a rolagem para o topo
-    });
     
     // Função para remover acentos e manter apenas letras
     function keepOnlyLetters(str) {
