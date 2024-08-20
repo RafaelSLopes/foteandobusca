@@ -4,7 +4,7 @@ body {
     padding: 0;
     background-color: #f0f0f0;
     height: 100vh;
-    overflow: hidden; /* Impede a barra de rolagem */
+    overflow-x: hidden; /* Impede rolagem horizontal */
 }
 
 .container {
@@ -14,10 +14,8 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 600px;
-    margin: 20px;
-    position: fixed; /* Mantém o bloco fixo no lugar */
-    top: 20px; /* Posiciona o bloco a uma distância fixa do topo */
-    left: 20px; /* Distância fixa da esquerda */
+    margin: 20px auto; /* Centraliza horizontalmente */
+    max-width: 90%; /* Responsivo para telas menores */
 }
 
 h1 {
