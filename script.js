@@ -41,9 +41,9 @@ $(document).ready(function() {
     function generateHashtags(bird) {
         const popularHashtag = keepOnlyLetters(bird.nome_popular).toLowerCase();
         const cientificHashtag = keepOnlyLetters(bird.nome_cientifico).toLowerCase();
-        // const inglesHashtag = keepOnlyLetters(bird.nome_ingles).toLowerCase();
-        const inglesHashtag = "";
-        hashtags = `#${popularHashtag} #${cientificHashtag} #${inglesHashtag}`;
+        const inglesHashtag = keepOnlyLetters(bird.nome_ingles).toLowerCase();
+        // hashtags = `#${popularHashtag} #${cientificHashtag} #${inglesHashtag}`;
+        hashtags = `#${popularHashtag} #${cientificHashtag}`;
     }
 
     // Função para filtrar os resultados com base na entrada do usuário
